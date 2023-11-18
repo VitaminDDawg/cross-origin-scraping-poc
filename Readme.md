@@ -14,9 +14,13 @@ any user knowledge or concent.
 Request Chain
 ----------------------
 1)Visitor -> Your site 
+
 2)Visitor <- Your site
+
 3)Visitor -> target site 
+
 4)Visitor <- target site
+
 5)Visitor -> webhook
 
 This method can be refined using a dynamic webpage that serves custom requests based on each individual visitor ip address, temporarily blacklisting ip addresses after
