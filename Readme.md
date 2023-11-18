@@ -11,7 +11,13 @@ When a visitor loads your webpage it causes their browser to send a request to y
 visitors' browser. The visitors' browser then sends that response data to a webhook site for your collection. All of this happens automatically in the background without 
 any user knowledge or concent. 
 
-Visitor -> Your site -> visitor -> target site -> visitor -> webhook
+Request Chain
+----------------------
+1)Visitor -> Your site 
+2)Visitor <- Your site
+3)Visitor -> target site 
+4)Visitor <- target site
+5)Visitor -> webhook
 
 This method can be refined using a dynamic webpage that serves custom requests based on each individual visitor ip address, temporarily blacklisting ip addresses after
 max requests and iterating through custom dataset request lists.
